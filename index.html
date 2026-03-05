@@ -1,1 +1,101 @@
-hi this is my topic
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Selection Box</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      background-color: #f0f4f8;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    select {
+      padding: 10px 16px;
+      font-size: 16px;
+      border: 2px solid #4a90e2;
+      border-radius: 8px;
+      background-color: #fff;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    select:hover {
+      border-color: #2c6fbd;
+    }
+
+    #selected-label {
+      margin-top: 12px;
+      font-size: 15px;
+      color: #555;
+    }
+
+    #display-image {
+      margin-top: 24px;
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Select an Option</h1>
+
+  <select id="mySelect" onchange="handleSelection()">
+    <option value="">-- Choose an option --</option>
+    <option value="scooby">scooby</option>
+    <option value="shaggy">shaggy</option>
+    <option value="dafny">dafny</option>
+    
+    
+  </select>
+
+  <p id="selected-label">No option selected yet.</p>
+
+  <img
+    id="display-image"
+    src="https://placehold.co/300x200?text=Select+an+option"
+    alt="Selection image"
+  />
+
+  <script>
+    const images = {
+      scooby:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvbKfqURaPMIUrIhd-MP6f6_lcsyEGYLZZBQ&s",
+      shaggy: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2RLUb0tnZJUY1-thT-mLq3KqYAt7ESoUDLw&s",
+      dafny: "https://www.hollywoodreporter.com/wp-content/uploads/2022/11/TCDSCDO_EC007.jpg",
+      
+    };
+
+    function handleSelection() {
+      const select = document.getElementById("mySelect");
+      const label  = document.getElementById("selected-label");
+      const img    = document.getElementById("display-image");
+      const value  = select.value;
+
+      if (value) {
+        label.textContent = "You selected: " + select.options[select.selectedIndex].text;
+        img.src = images[value];
+        img.alt = select.options[select.selectedIndex].text;
+      } else {
+        label.textContent = "No option selected yet.";
+        img.src = "https://placehold.co/300x200?text=Select+an+option";
+        img.alt = "Selection image";
+      }
+    }
+  </script>
+
+</body>
+</html>
